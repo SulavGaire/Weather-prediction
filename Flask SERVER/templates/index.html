@@ -1,122 +1,189 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Weather Prediction</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #0f0f0f;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px 20px 20px 20px;
+        background-color: #cfb7b7;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      select,
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 20px ;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #678f68;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .results {
+        margin-top: 20px;
+      }
+
+      .result-item {
+        margin-bottom: 10px;
+      }
+
+      .result-label {
+        font-weight: bold;
+      }
+      .header {
+        overflow: hidden;
+        background-color: #995555;
+        padding: 20px 10px;
+      }
+
+      .header a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 25px;
+        border-radius: 4px;
+      }
+
+      .header a.logo {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      .header a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .header a.active {
+        background-color: dodgerblue;
+        color: white;
+      }
+
+      .header-right {
+        float: right;
+      }
+
+      @media screen and (max-width: 500px) {
+        .header a {
+          float: none;
+          display: block;
+          text-align: left;
         }
 
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .header-right {
+          float: none;
         }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        select, input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .results {
-            margin-top: 20px;
-        }
-
-        .result-item {
-            margin-bottom: 10px;
-        }
-
-        .result-label {
-            font-weight: bold;
-        }
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Weather Prediction</h1>
-        <form action="/predict" method="post">
-            <label for="hour">Hour:</label>
-            <select id="hour" name="hour">
-                {% for hour in range(24) %}
-                <option value="{{ hour }}">{{ hour }}</option>
-                {% endfor %}
-            </select>
-
-            <label for="dayofweek">Day of Week:</label>
-            <select id="dayofweek" name="dayofweek">
-                {% for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
-                <option value="{{ loop.index0 }}">{{ day }}</option>
-                {% endfor %}
-            </select>
-
-            <label for="month">Month:</label>
-            <select id="month" name="month">
-                {% for month in range(1, 13) %}
-                <option value="{{ month }}">{{ month }}</option>
-                {% endfor %}
-            </select>
-
-            <label for="year">Year:</label>
-            <input type="number" id="year" name="year" min="2000" max="2100" value="2013">
-
-            <label for="quarter">Quarter:</label>
-            <select id="quarter" name="quarter">
-                {% for quarter in range(1, 5) %}
-                <option value="{{ quarter }}">{{ quarter }}</option>
-                {% endfor %}
-            </select>
-
-            <label for="dayofyear">Day of Year:</label>
-            <input type="number" id="dayofyear" name="dayofyear" min="1" max="365">
-
-            <label for="dayofmonth">Day of Month:</label>
-            <input type="number" id="dayofmonth" name="dayofmonth" min="1" max="31">
-
-            <button type="submit">Predict</button>
-        </form>
-
-        {% if results %}
-        <div class="results">
-            <div class="result-item">
-                <span class="result-label">Temperature:</span>
-                <span>{{ results.Temperature }}</span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Humidity:</span>
-                <span>{{ results.Humidity }}</span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Pressure:</span>
-                <span>{{ results.Pressure }}</span>
-            </div>
-        </div>
-        {% endif %}
+  </head>
+  <body>
+    <div class="header">
+      <a href="http://localhost:5000/" class="logo">Weather Prediction</a>
+      <a href="http://localhost:4000/" >WEATHER FORCAST</a>
     </div>
-</body>
+    <div class="container">
+      <form action="/predict" method="post">
+        <label for="hour">Hour:</label>
+        <select id="hour" name="hour">
+          {% for hour in range(24) %}
+          <option value="{{ hour }}">{{ hour }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="dayofweek">Day of Week:</label>
+        <select id="dayofweek" name="dayofweek">
+          {% for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+          'Saturday', 'Sunday'] %}
+          <option value="{{ loop.index0 }}">{{ day }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="month">Month:</label>
+        <select id="month" name="month">
+          {% for month in range(1, 13) %}
+          <option value="{{ month }}">{{ month }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="year">Year:</label>
+        <input
+          type="number"
+          id="year"
+          name="year"
+          min="2000"
+          max="2100"
+          value="2013"
+        />
+
+        <label for="quarter">Quarter:</label>
+        <select id="quarter" name="quarter">
+          {% for quarter in range(1, 5) %}
+          <option value="{{ quarter }}">{{ quarter }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="dayofyear">Day of Year:</label>
+        <input
+          type="number"
+          id="dayofyear"
+          name="dayofyear"
+          min="1"
+          max="365"
+        />
+
+        <label for="dayofmonth">Day of Month:</label>
+        <input
+          type="number"
+          id="dayofmonth"
+          name="dayofmonth"
+          min="1"
+          max="31"
+        />
+        <br></br>
+        <button type="submit">Predict</button>
+      </form>
+
+      {% if results %}
+      <div class="results">
+        <div class="result-item">
+          <span class="result-label">Temperature:</span>
+          <span>{{ results.Temperature }}</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Humidity:</span>
+          <span>{{ results.Humidity }}</span>
+        </div>
+        <div class="result-item">
+          <span class="result-label">Pressure:</span>
+          <span>{{ results.Pressure }}</span>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
 </html>

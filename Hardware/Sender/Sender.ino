@@ -96,9 +96,9 @@ void loop()
   LoRa.print(',');
   LoRa.print(bmp.readTemperature());
   LoRa.print(',');
-  LoRa.print(bmp.readSealevelPressure());
+  LoRa.print(bmp.readSealevelPressure()/100);
   LoRa.print(',');
-  LoRa.print(bmp.readAltitude(seaLevelPressure_hPa * 1000));
+  LoRa.print(bmp.readAltitude());
   LoRa.endPacket();
 
   delay(2000); // wait two seconds

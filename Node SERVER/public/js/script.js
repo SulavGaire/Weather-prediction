@@ -65,7 +65,7 @@ const myChart3 = new Chart(ctx3, {
     labels: xlabels,
     datasets: [
       {
-        label: "Humidity",
+        label: "Humidity in %",
         data: h,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],
@@ -111,7 +111,7 @@ const myChart5 = new Chart(ctx5, {
     labels: xlabels,
     datasets: [
       {
-        label: "Pressure",
+        label: "Pressure in millibars",
         data: BMPP,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],
@@ -134,7 +134,7 @@ const myChart6 = new Chart(ctx6, {
     labels: xlabels,
     datasets: [
       {
-        label: "Altitude",
+        label: "Altitude in meters",
         data: BMPA,
         backgroundColor: ["rgba(255, 99, 132, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)"],
