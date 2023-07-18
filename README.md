@@ -39,7 +39,7 @@ Weather data from BMP 180 and DHT 11 sensor are transmitted from transmitter to 
 
 ### System Block Diagram
 
-![](.gitbook/assets/image.png)
+![](<.gitbook/assets/image (10).png>)
 
 ### System Activity Diagram
 
@@ -47,15 +47,69 @@ Weather data from BMP 180 and DHT 11 sensor are transmitted from transmitter to 
 
 ### Node Activity Diagram
 
-![](<.gitbook/assets/image (5).png>)
+![](<.gitbook/assets/image (5) (1).png>)
 
 ### Flask Activity Diagram
 
-![](<.gitbook/assets/image (1).png>)
+![](<.gitbook/assets/image (1) (1).png>)
 
 ### Circuit Layout
 
 ![](<.gitbook/assets/image (3).png>)
+
+### Machine Learning Pipeline
+
+a. Data collection for model training.
+
+b. Data filtering
+
+<img src=".gitbook/assets/image (12).png" alt="Unfiltered Data" data-size="original">
+
+![Filtered Data](<.gitbook/assets/image (8).png>)
+
+#### Feature Engineering
+
+Transforming raw data into a format that is more suitable for machine learning algorithms to extract meaningful patterns and make accurate predictions.
+
+![Humidity](.gitbook/assets/image.png)
+
+FIG: Humidity
+
+![temperature](<.gitbook/assets/image (1).png>)
+
+FIG: Temperature&#x20;
+
+![pressure](<.gitbook/assets/image (5).png>)
+
+FIG: Pressure
+
+#### Selection of Model
+
+XGBoost algorithm was used to train the model due to following reasons:
+
+1. It has high prediction performance which is designed to handle complex, non-linear relationships in data and can capture subtle patterns that may be missed by other algorithms
+2. It can be used for both classification and regression tasks.
+3. It provides valuable insights into feature importance. It calculates feature importance scores based on the number of times a feature is used to split the data across all the boosting trees.
+4. It is highly optimized and offers fast execution speed.
+5. XGBoost has built-in capabilities to handle missing data. It can learn how to handle missing values by making informed decisions during the tree-building process.
+6. The selected Model is trained using the collected data. 80% of the data is used for training and the remaining 20% of data is used for testing.
+7. Root Mean Square Error calculation for the following parameters![RMS](<.gitbook/assets/image (9).png>)&#x20;
+
+## Result
+
+#### Live Weather Report
+
+![](<.gitbook/assets/image (13).png>)
+
+#### Weather Prediction
+
+![](<.gitbook/assets/image (11).png>)
+
+## Future Enhancement
+
+* Machine learning can be improved using more datasets and better algorithms.
+* The LoRa’s data can be collected in the database to use it as a training dataset for more accurate weather prediction.
+* The project can be expanded to include more atmospheric data to predict rain and chances of avalanches in mountainous terrain.
 
 ## References
 
@@ -71,5 +125,7 @@ Weather data from BMP 180 and DHT 11 sensor are transmitted from transmitter to 
 * \[10] S. Scher and G. Messori, “Weather and climate forecasting with neural networks: Using general circulation models (gcms) with different complexity as a study ground,” Geoscientific Model Development, [https://doi.org/10.5194/gmd-12-2797-2019](https://doi.org/10.5194/gmd-12-2797-2019).
 * \[11] N. A. A. Husein, A. H. A. Rahman, and D. P. Dahnil, “Evaluation of lora-based Air Pollution Monitoring System,” International Journal of Advanced Computer Science and Applications (IJACSA), http://dx.doi.org/10.14569/IJACSA.2019.0100753 (accessed May 21, 2023).
 
-
+{% file src=".gitbook/assets/MinorPresentation.pdf" %}
+Presentation
+{% endfile %}
 
